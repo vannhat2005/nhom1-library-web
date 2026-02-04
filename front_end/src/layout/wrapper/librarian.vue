@@ -1,20 +1,30 @@
 <template>
-    <div>
-        <SidebarLibrarian></SidebarLibrarian>
-        <router-view></router-view>
+  <div class="layout">
+    <SidebarLibrarian />
+    <div class="content">
+      <router-view />
     </div>
+  </div>
 </template>
 
 <script>
-import SidebarLibrarian from '../components/SidebarLibrarian.vue';
+import SidebarLibrarian from "../components/SidebarLibrarian.vue";
 
 export default {
-    name: 'LibrarianLayout',
-    components: {
-        SidebarLibrarian, 
-    }
-}
+  name: "LibrarianLayout",
+  components: { SidebarLibrarian },
+};
 </script>
-<style>
-    
+
+<style scoped>
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  padding: 24px;
+  background: #f7f8fa;
+}
 </style>

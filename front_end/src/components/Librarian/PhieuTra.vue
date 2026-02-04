@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Đây là trang cấu hình hệ thống</h1>
+        <h1>Đây là trang Quản lý phiếu trả</h1>
     </div>
 </template>
 <script>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Đây là trang quản lý khách hàng</h1>
+        <h1>Đây là trang quản lý mượn - trả</h1>
     </div>
 </template>
 <script>

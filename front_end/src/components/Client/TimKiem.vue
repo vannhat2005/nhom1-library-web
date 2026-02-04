@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Đây là trang chủ thủ thư</h1>
+        <h1>Đây là trang tìm kiếm</h1>
     </div>
 </template>
 <script>

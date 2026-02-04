@@ -1,8 +1,10 @@
 <template>
     <div>
-        <h1>Đây là trang quản lý tài khoản</h1>
+       <h1> Đây là trang đăng nhập</h1>
     </div>
 </template>
+
+
 <script>
 export default {
     
