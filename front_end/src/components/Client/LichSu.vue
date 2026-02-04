@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Đây là trang quản lý tài khoản</h1>
+        <h1>Đây là trang lịch sử mượn sách</h1>
     </div>
 </template>
 <script>

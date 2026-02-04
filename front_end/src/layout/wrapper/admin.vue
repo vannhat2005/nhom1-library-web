@@ -1,8 +1,14 @@
 <template>
-    <div>
-        <SidebarAdmin></SidebarAdmin>
-        <TopAdmin></TopAdmin>
-        <router-view></router-view>
+    <div class="admin-layout">
+        <!-- Left -->
+        <SidebarAdmin />
+        <!-- Right -->
+        <div class="main">
+            <TopAdmin />
+            <div class="content">
+                <router-view />
+            </div>
+        </div>
     </div>
 </template>
 
@@ -14,9 +20,23 @@ export default {
     components: {
         SidebarAdmin,
         TopAdmin
-    }   
+    }
 }
 </script>
-<style>
-    
+<style scoped>
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f7f8fb; /* giống nền ảnh */
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  padding: 18px;
+}
 </style>

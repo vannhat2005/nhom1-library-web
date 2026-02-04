@@ -13,22 +13,22 @@ import LibrarianLayout from './layout/wrapper/librarian.vue';
 
 
 export default {
-  name : 'App',
+  name: 'App',
   computed: {
     layout() {
       const layout = this.$route.meta.layout;
-      if(layout === 'admin') {
+      if (layout === 'admin') {
         return AdminLayout;
-      } else if(layout === 'librarian') {
+      } else if (layout === 'librarian') {
         return LibrarianLayout;
-      } else {
+      } else if (layout === 'blank')
+        return 'div';
+      else {
         return ClientLayout;
       }
-      
+
     }
   }
 }
 </script>
-<style>
-  
-</style>
+<style></style>

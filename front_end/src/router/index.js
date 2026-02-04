@@ -7,13 +7,18 @@ const routes = [
         component: () => import('../components/Client/TrangChu.vue'),
         meta: { layout: 'client' },
     },
+     {
+        path: '/client/tim-kiem',
+        component: () => import('../components/Client/TimKiem.vue'),
+        meta: { layout: 'client' },
+    },
+     {
+        path: '/client/lich-su-muon',
+        component: () => import('../components/Client/LichSu.vue'),
+        meta: { layout: 'client' },
+    },
 
     // Librarian
-    {
-        path: '/librarian/trang-chu',
-        component: () => import('../components/Librarian/TrangChu.vue'),
-        meta: { layout: 'librarian' },
-    },
     {
         path: '/librarian/the-loai',
         component: () => import('../components/Librarian/TheLoai.vue'),
@@ -35,8 +40,8 @@ const routes = [
         meta: { layout: 'librarian' },
     },
     {
-        path: '/librarian/khach-hang',
-        component: () => import('../components/Librarian/KhachHang.vue'),
+        path: '/librarian/phieu-tra',
+        component: () => import('../components/Librarian/PhieuTra.vue'),
         meta: { layout: 'librarian' },
     },
 
@@ -52,15 +57,31 @@ const routes = [
         meta: { layout: 'admin' },
     },
     {
-        path: '/admin/cau-hinh-he-thong',
-        component: () => import('../components/Admin/CauHinhHeThong.vue'),
-        meta: { layout: 'admin' },
-    },
-    {
         path: '/admin/bao-cao-thong-ke',
         component: () => import('../components/Admin/BaoCaoThongKe.vue'),
         meta: { layout: 'admin' },
     },
+    {
+        path: '/admin/the-loai',
+        component: () => import('../components/Admin/TheLoai.vue'),
+        meta: { layout: 'admin' },
+    },
+    {
+        path: '/admin/sach',
+        component: () => import('../components/Admin/Sach.vue'),
+        meta: { layout: 'admin' },
+    },
+    {
+        path: '/admin/muon-tra',
+        component: () => import('../components/Admin/MuonTra.vue'),
+        meta: { layout: 'admin' },
+    },
+    //Auth
+        {
+            path: '/login',
+            component: () => import('../components/Auth/Login.vue'),
+            meta: { layout: 'blank' },
+        },
 ];
 const router = createRouter({
     history: createWebHistory(),
