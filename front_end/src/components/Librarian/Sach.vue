@@ -56,6 +56,7 @@
               <th>TÁC GIẢ</th>
               <th>THỂ LOẠI</th>
               <th class="text-center">SỐ LƯỢNG</th>
+              <th class="text-center">SỐ LƯỢNG CÒN</th>
               <th class="text-center">TRẠNG THÁI</th>
               <th class="text-center">THAO TÁC</th>
             </tr>
@@ -70,8 +71,9 @@
                 <span class="badge badge-category">Công nghệ</span>
               </td>
               <td class="text-center">15</td>
+              <td class="text-center">7</td>
               <td class="text-center">
-                <span class="badge badge-status badge-ok">Còn sách</span>
+                <span class="badge badge-status badge-ok">Hoạt động</span>
               </td>
               <td class="text-center">
                 <button class="btn btn-link action action-edit" type="button" title="Sửa">
@@ -91,8 +93,9 @@
                 <span class="badge badge-category">Văn học</span>
               </td>
               <td class="text-center">20</td>
+              <td class="text-center">5</td>
               <td class="text-center">
-                <span class="badge badge-status badge-ok">Còn sách</span>
+                <span class="badge badge-status badge-ok">Hoạt động</span>
               </td>
               <td class="text-center">
                 <button class="btn btn-link action action-edit" type="button" title="Sửa">
@@ -111,9 +114,10 @@
               <td>
                 <span class="badge badge-category">Lịch sử</span>
               </td>
+              <td class="text-center">12</td>
               <td class="text-center">0</td>
               <td class="text-center">
-                <span class="badge badge-status badge-out">Hết sách</span>
+                <span class="badge badge-status badge-out">Ngừng hoạt động</span>
               </td>
               <td class="text-center">
                 <button class="btn btn-link action action-edit" type="button" title="Sửa">
@@ -133,8 +137,9 @@
                 <span class="badge badge-category">Khoa học</span>
               </td>
               <td class="text-center">8</td>
+              <td class="text-center">3</td>
               <td class="text-center">
-                <span class="badge badge-status badge-ok">Còn sách</span>
+                <span class="badge badge-status badge-ok">Hoạt động</span>
               </td>
               <td class="text-center">
                 <button class="btn btn-link action action-edit" type="button" title="Sửa">
@@ -154,8 +159,9 @@
                 <span class="badge badge-category">Công nghệ</span>
               </td>
               <td class="text-center">12</td>
+              <td class="text-center">8</td>
               <td class="text-center">
-                <span class="badge badge-status badge-ok">Còn sách</span>
+                <span class="badge badge-status badge-ok">Hoạt động</span>
               </td>
               <td class="text-center">
                 <button class="btn btn-link action action-edit" type="button" title="Sửa">
