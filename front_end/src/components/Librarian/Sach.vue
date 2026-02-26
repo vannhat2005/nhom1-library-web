@@ -15,11 +15,7 @@
             <span class="input-group-text bg-white border-end-0">
               <i class="fa-solid fa-magnifying-glass text-muted"></i>
             </span>
-            <input
-              type="text"
-              class="form-control border-start-0"
-              placeholder="Tìm kiếm theo tên sách, tác giả..."
-            />
+            <input v-model="key_search" @input="search()" type="text" class="form-control border-start-0" placeholder="Tìm kiếm theo tên sách, tác giả..." />
           </div>
         </div>
 
@@ -38,7 +34,7 @@
         </select>
 
         <!-- Add button -->
-        <button class="btn btn-primary btn-add ms-auto" type="button">
+        <button class="btn btn-primary btn-add ms-auto" type="button" data-bs-toggle="modal" data-bs-target="#addModal">
           <i class="fa-solid fa-plus me-2"></i>
           Thêm sách mới
         </button>
@@ -63,126 +59,277 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td class="text-muted text-center">1</td>
-              <td class="fw-semibold">Lập trình C++</td>
-              <td>Nguyễn Văn A</td>
-              <td>
-                <span class="badge badge-category">Công nghệ</span>
-              </td>
-              <td class="text-center">15</td>
-              <td class="text-center">7</td>
-              <td class="text-center">
-                <span class="badge badge-status badge-ok">Hoạt động</span>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-link action action-edit" type="button" title="Sửa">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </button>
-                <button class="btn btn-link action action-delete" type="button" title="Xóa">
-                  <i class="fa-regular fa-trash-can"></i>
-                </button>
-              </td>
-            </tr>
+            <template v-for="(item, index) in list_sach" :key="index">
+              <tr>
+                <td class="text-muted text-center">{{ index + 1 }}</td>
+                <td class="fw-semibold">{{ item.title }}</td>
+                <td>{{ item.author_name }}</td>
+                <td>
+                  <span class="badge badge-category">{{ item.category_name }}</span>
+                </td>
+                <td class="text-center">{{ item.quantity }}</td>
+                <td class="text-center">{{ item.available }}</td>
 
-            <tr>
-              <td class="text-muted text-center">2</td>
-              <td class="fw-semibold">Truyện Kiều</td>
-              <td>Nguyễn Du</td>
-              <td>
-                <span class="badge badge-category">Văn học</span>
-              </td>
-              <td class="text-center">20</td>
-              <td class="text-center">5</td>
-              <td class="text-center">
-                <span class="badge badge-status badge-ok">Hoạt động</span>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-link action action-edit" type="button" title="Sửa">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </button>
-                <button class="btn btn-link action action-delete" type="button" title="Xóa">
-                  <i class="fa-regular fa-trash-can"></i>
-                </button>
-              </td>
-            </tr>
+                <td v-if="item.status == 1" class="text-center">
+                  <span class="badge badge-status badge-ok">Hoạt động</span>
+                </td>
+                <td v-else class="text-center">
+                  <span class="badge badge-status badge-out">Ngừng hoạt động</span>
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-link action action-edit" data-bs-toggle="modal" data-bs-target="#updateModal"
+                    v-on:click="Object.assign(update_sach, item)" type="button" title="Sửa">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </button>
+                  <button class="btn btn-link action action-delete" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                    v-on:click="Object.assign(delete_sach, item)" type="button" title="Xóa">
+                    <i class="fa-regular fa-trash-can"></i>
+                  </button>
+                </td>
+              </tr>
+            </template>
 
-            <tr>
-              <td class="text-muted text-center">3</td>
-              <td class="fw-semibold">Lịch sử Việt Nam</td>
-              <td>Trần Văn B</td>
-              <td>
-                <span class="badge badge-category">Lịch sử</span>
-              </td>
-              <td class="text-center">12</td>
-              <td class="text-center">0</td>
-              <td class="text-center">
-                <span class="badge badge-status badge-out">Ngừng hoạt động</span>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-link action action-edit" type="button" title="Sửa">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </button>
-                <button class="btn btn-link action action-delete" type="button" title="Xóa">
-                  <i class="fa-regular fa-trash-can"></i>
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="text-muted text-center">4</td>
-              <td class="fw-semibold">Toán cao cấp</td>
-              <td>Lê Thị C</td>
-              <td>
-                <span class="badge badge-category">Khoa học</span>
-              </td>
-              <td class="text-center">8</td>
-              <td class="text-center">3</td>
-              <td class="text-center">
-                <span class="badge badge-status badge-ok">Hoạt động</span>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-link action action-edit" type="button" title="Sửa">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </button>
-                <button class="btn btn-link action action-delete" type="button" title="Xóa">
-                  <i class="fa-regular fa-trash-can"></i>
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="text-muted text-center">5</td>
-              <td class="fw-semibold">Cơ sở dữ liệu</td>
-              <td>Phạm Văn D</td>
-              <td>
-                <span class="badge badge-category">Công nghệ</span>
-              </td>
-              <td class="text-center">12</td>
-              <td class="text-center">8</td>
-              <td class="text-center">
-                <span class="badge badge-status badge-ok">Hoạt động</span>
-              </td>
-              <td class="text-center">
-                <button class="btn btn-link action action-edit" type="button" title="Sửa">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </button>
-                <button class="btn btn-link action action-delete" type="button" title="Xóa">
-                  <i class="fa-regular fa-trash-can"></i>
-                </button>
-              </td>
-            </tr>
-            
           </tbody>
         </table>
       </div>
     </div>
   </div>
+  <!-- Modal Thêm Mới -->
+  <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Thêm Sách Mới</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Tên Sách</label>
+              <input v-model="create_sach.title" type="text" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Hình Ảnh</label>
+              <input v-model="create_sach.image" type="text" class="form-control" />
+            </div>
+            <!-- Tác giả -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Tác Giả</label>
+              <select v-model="create_sach.author_id" class="form-select">
+                <option v-for="a in list_author" :key="a.id" :value="a.id">
+                  {{ a.name }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Thể loại -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Thể Loại</label>
+              <select v-model="create_sach.category_id" class="form-select">
+                <option v-for="c in list_category" :key="c.id" :value="c.id">
+                  {{ c.name }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Số lượng -->
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Số Lượng</label>
+              <input v-model.number="create_sach.quantity" type="number" min="1" class="form-control" />
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Trạng Thái</label>
+              <select v-model="create_sach.status" class="form-select">
+                <option selected value="1">Hoạt động</option>
+                <option value="0">Ngừng hoạt động</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Đóng
+          </button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="createSach()">
+            Thêm mới
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Cập Nhật -->
+  <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Cập Nhật Sách</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Tên Sách</label>
+              <input v-model="update_sach.title" type="text" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Hình Ảnh</label>
+              <input v-model="update_sach.image" type="text" class="form-control" />
+            </div>
+            <!-- Tác giả -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Tác Giả</label>
+              <select v-model="update_sach.author_id" class="form-select">
+                <option v-for="a in list_author" :key="a.id" :value="a.id">
+                  {{ a.name }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Thể loại -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Thể Loại</label>
+              <select v-model="update_sach.category_id" class="form-select">
+                <option v-for="c in list_category" :key="c.id" :value="c.id">
+                  {{ c.name }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Số lượng -->
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Số Lượng</label>
+              <input v-model.number="update_sach.quantity" type="number" min="1" class="form-control" />
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label">Trạng Thái</label>
+              <select v-model="update_sach.status" class="form-select">
+                <option selected value="1">Hoạt động</option>
+                <option value="0">Ngừng hoạt động</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Đóng
+          </button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="updateSach()">
+            Cập Nhật
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Xóa -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Xóa Sách</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger" role="alert">
+            Bạn có chắc chắn muốn xóa sách
+            <strong>{{ delete_sach.title }}</strong>?
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Đóng
+          </button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="deleteSach()">
+            Xác nhận
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </template>
 <script>
+import axios from 'axios';
 export default {
-    
-}
+  data() {
+    return {
+      list_sach: [],
+      list_category: [],
+      list_author: [],
+      create_sach: {},
+      update_sach: {},
+      delete_sach: {},
+      key_search: '',
+    };
+  },
+  mounted() {
+    this.getSach();
+    this.getCategory();
+    this.getAuthor();
+  },
+  methods: {
+    search() {
+        axios.post('http://127.0.0.1:8000/api/librarian/sach/search', { key_search : this.key_search })
+          .then(res => {
+            this.list_sach = res.data.data;
+          });
+    },
+    getCategory() {
+      axios.get('http://127.0.0.1:8000/api/librarian/category/get-data')
+        .then(res => {
+          this.list_category = res.data.data;
+        });
+    },
+    getAuthor() {
+      axios.get('http://127.0.0.1:8000/api/librarian/author/get-data')
+        .then(res => {
+          this.list_author = res.data.data;
+        });
+    },
+    getSach() {
+      axios.get('http://127.0.0.1:8000/api/librarian/sach/get-data')
+        .then(res => {
+          this.list_sach = res.data.data;
+        });
+    },
+    createSach() {
+      axios.post('http://127.0.0.1:8000/api/librarian/sach/add-data', this.create_sach)
+        .then(res => {
+          this.$toast.success(res.data.message);
+          this.getSach();
+        })
+        .catch(error => {
+          const errors = error.response.data.errors;
+          const firstKey = Object.keys(errors)[0];
+          this.$toast.error(errors[firstKey][0]);
+        });
+    },
+    updateSach() {
+      axios.post('http://127.0.0.1:8000/api/librarian/sach/update-data/' + this.update_sach.id, this.update_sach)
+        .then(res => {
+          this.$toast.success(res.data.message);
+          this.getSach();
+        })
+        .catch(error => {
+          const errors = error.response.data.errors;
+          const firstKey = Object.keys(errors)[0];
+          this.$toast.error(errors[firstKey][0]);
+        });
+    },
+    deleteSach() {
+      axios.delete('http://127.0.0.1:8000/api/librarian/sach/delete-data/' + this.delete_sach.id)
+        .then(res => {
+          this.$toast.success(res.data.message);
+          this.getSach();
+        })
+        .catch(error => {
+          this.$toast.error('Xóa sách thất bại');
+        });
+    }
+  }
+};
 </script>
 <style scoped>
 .page {
