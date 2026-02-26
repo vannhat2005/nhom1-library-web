@@ -24,6 +24,7 @@ const routes = [
         component: () => import('../components/Librarian/TheLoai.vue'),
         meta: { layout: 'librarian' },
     },
+   
     {
         path: '/librarian/sach',
         component: () => import('../components/Librarian/Sach.vue'),
