@@ -5,16 +5,16 @@
         <i class="remove_icon fa-solid fa-xmark"></i>
       </div>
 
-      <h1>Welcome</h1>
+      <h1>Welcome Back</h1>
+      <p>Please enter your details to access your account</p>
 
       <!-- Tabs -->
       <div class="tabs">
-        <button id="tab__registry" class="tab active">Sign Up</button>
-        <button id="tab__login" class="tab">Login</button>
+        <button id="tab__registry" class="tab">Register</button>
+        <button id="tab__login" class="tab active">Login</button>
       </div>
-
       <!-- Register Form -->
-      <form id="formRegister" class="form active_form">
+      <form id="formRegister" class="form">
         <div class="form-group">
           <label>Email</label>
           <div class="input-box">
@@ -31,7 +31,6 @@
         <div class="form-group">
           <div class="label-row">
             <label>Password</label>
-            <a href="#" class="link">Forgot password?</a>
           </div>
           <div class="input-box">
             <input
@@ -63,15 +62,15 @@
         </div>
 
         <div class="options">
-          <label class="checkbox">
+          <!-- <label class="checkbox">
             <input type="checkbox" />
             Remember me for 30 days
-          </label>
+          </label> -->
         </div>
 
         <button type="submit" class="btn-primary">Register</button>
 
-        <div class="divider">
+        <!-- <div class="divider">
           <span>OR CONTINUE WITH</span>
         </div>
 
@@ -84,11 +83,11 @@
             <img src="https://www.svgrepo.com/show/475654/github-color.svg" />
             GitHub
           </button>
-        </div>
+        </div> -->
       </form>
 
       <!-- Login Form -->
-      <form id="formLogin" class="form">
+      <form id="formLogin" class="form active_form">
         <div class="form-group">
           <label>Email</label>
           <div class="input-box">
@@ -120,30 +119,7 @@
           </div>
           <span class="form-Messege"></span>
         </div>
-
-        <div class="options">
-          <label class="checkbox">
-            <input type="checkbox" />
-            Remember me for 30 days
-          </label>
-        </div>
-
-        <button type="submit" class="btn-primary">Login</button>
-
-        <div class="divider">
-          <span>OR CONTINUE WITH</span>
-        </div>
-
-        <div class="social-login">
-          <button class="btn-social">
-            <img src="https://www.svgrepo.com/show/475656/google-color.svg" />
-            Google
-          </button>
-          <button class="btn-social">
-            <img src="https://www.svgrepo.com/show/475654/github-color.svg" />
-            GitHub
-          </button>
-        </div>
+        <button type="submit" class="btn-primary">Sign In</button>
       </form>
     </div>
   </div>
@@ -166,9 +142,9 @@ export default {
     justify-content: center;
     z-index: 9999;
   }
-.auth-wrapper--active{
+/* .auth-wrapper--active{
     display: none;
-  }
+  } */
   
   .remove{
     display: block;
@@ -324,7 +300,7 @@ export default {
     padding: 14px;
     border-radius: 10px;
     border: none;
-    background: linear-gradient(135deg, #a39595, #f99a9a);
+    background: rgb(28, 50, 250);
     color: #fff;
     font-size: 15px;
     font-weight: 600;
