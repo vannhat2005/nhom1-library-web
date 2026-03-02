@@ -47,8 +47,17 @@ class HomeController extends Controller
     }
     public function addBorrowRequest(Request $request)
     {
-        // Logic to add a borrow request for the student
-
+        $data = $request->validate([
+            'book_id' => 'required|integer|exists:books,id',
+        ]);
+        $user = $request->user();
+        // logic lưu yêu cầu mượn ở đây...
+        BorrowRequest::create([
+            'user_id' => $user->id,
+            'book_id' => $data['book_id'],
+            'request_date' => now(),
+            'status' => 0, // 0 = đang chờ duyệt
+        ]);
         return response()->json([
             'status' => true,
             'message' => 'Yêu cầu mượn sách đã được gửi thành công',

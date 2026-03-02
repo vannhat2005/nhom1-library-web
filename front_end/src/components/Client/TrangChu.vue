@@ -203,8 +203,52 @@ export default {
       return "chip-biz";
     },
 
-    requestBook() {
+    async requestBook() {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          this.$toast.error("Bạn cần đăng nhập để mượn sách");
+          this.$router.push("/login");
+          return;
+        }
 
+        // payload gửi lên backend (tối thiểu cần book_id)
+        // Bạn đang Object.assign(add_request, b) nên add_request.id chính là id sách
+        const payload = {
+          book_id: this.add_request.id,
+          // nếu backend cần thêm thì bạn bổ sung ở đây (vd: note, deadline,...)
+        };
+
+        const res = await axios.post(
+          `${this.API_BASE}/student/borrow-request/add-data`,
+          payload,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        // toast theo backend trả về
+        if (res.data?.status) {
+          this.$toast.success(res.data.message || "Gửi yêu cầu mượn thành công");
+
+          // đóng modal bootstrap
+          const modalEl = document.getElementById("addModal");
+          const modalInstance = window.bootstrap?.Modal.getInstance(modalEl);
+          modalInstance?.hide();
+
+          // reset data
+          this.add_request = {};
+        } else {
+          this.$toast.error(res.data?.message || "Gửi yêu cầu mượn thất bại");
+        }
+      } catch (err) {
+        const message =
+          err?.response?.data?.message ||
+          "Gửi yêu cầu mượn thất bại (kiểm tra API/CORS)";
+        this.$toast.error(message);
+      }
     },
   },
 };
@@ -584,9 +628,11 @@ export default {
   font-weight: 800;
   padding: 10px 30px;
 }
+
 .modal-footer {
   justify-content: center !important;
 }
+
 custom-modal {
   max-width: 300px;
 }

@@ -18,6 +18,7 @@ export default {
 }
 </script>
 <style scoped>
+
 .layout {
     display: flex;
     min-height: 100vh;

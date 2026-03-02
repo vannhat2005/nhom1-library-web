@@ -19,11 +19,51 @@
             <li> <router-link to="/librarian/phieu-tra" class="menu-item"> <i class="fas fa-undo"></i> Quản lý phiếu trả
                 </router-link> </li>
         </ul> <!-- Logout -->
-        <div class="logout"> <router-link to="/login" class="logout-btn"> <i class="fas fa-sign-out-alt"></i> Đăng xuất
+        <div class="logout"> <router-link to="/login" class="logout-btn" @click="logout"> <i class="fas fa-sign-out-alt"></i> Đăng xuất
             </router-link> </div>
     </div>
 </template>
-<script>export default { name: "SidebarLibrarian", }; </script>
+<script>
+import axios from "axios";
+
+const API_BASE = "http://127.0.0.1:8000";
+
+export default {
+    name: "SidebarLibrarian",
+
+    data() {
+        return {
+            user: {},
+        };
+    },
+
+    mounted() {
+        this.user = JSON.parse(localStorage.getItem("user") || "{}");
+    },
+
+    methods: {
+        async logout() {
+            try {
+                await axios.post(
+                    `${API_BASE}/api/auth/logout`,
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem("token")}`,
+                        },
+                    }
+                );
+            } catch (err) { }
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+
+            this.$toast.success("Đăng xuất thành công");
+            this.$router.push("/login");
+        },
+    },
+};
+</script>
 <style scoped>
 .sidebar {
     width: 260px;
@@ -34,6 +74,8 @@
     flex-direction: column;
     padding: 20px;
     font-family: Arial, sans-serif;
+    position: sticky;  /* 🔥 dùng cái này */
+    top: 0;            /* 🔥 bắt buộc có */
 }
 
 /* Logo */

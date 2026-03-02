@@ -33,6 +33,8 @@ export default {
     flex-direction: column;
     padding: 20px;
     font-family: Arial, sans-serif;
+    position: sticky;  /* 🔥 dùng cái này */
+    top: 0;            /* 🔥 bắt buộc có */
 }
 
 /* Logo */

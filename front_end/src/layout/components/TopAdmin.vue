@@ -8,7 +8,7 @@
                 </div>
                 <span class="name">Nguyễn Văn A (Admin)</span>
             </div>
-            <router-link to="/login" class="logout-btn">
+            <router-link to="/login" class="logout-btn" @click="logout">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 Đăng xuất
             </router-link>
@@ -16,8 +16,51 @@
     </header>
 </template>
 <script>
+import axios from 'axios';
+const API_BASE = "http://127.0.0.1:8000";
 export default {
+    data() {
+        return {
+            user: {},
+        };
+    },
 
+    computed: {
+        roleText() {
+            if (this.user.status === 0) return "Admin";
+            if (this.user.status === 1) return "Thủ thư";
+            return "Khách hàng";
+        },
+    },
+
+    mounted() {
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+        this.user = user;
+    },
+
+    methods: {
+        async logout() {
+            try {
+                await axios.post(
+                    `${API_BASE}/api/auth/logout`,
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem("token")}`,
+                        },
+                    }
+                );
+            } catch (err) {
+                console.log("Logout API error", err);
+            }
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+
+            this.$toast.success("Đăng xuất thành công");
+            this.$router.push("/login");
+        },
+    },
 }
 </script>
 <style scoped>

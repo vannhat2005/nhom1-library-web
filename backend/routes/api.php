@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowRequestController;
 use App\Http\Controllers\HomeController;
@@ -26,10 +27,19 @@ Route::post('/librarian/borrow-request/reject-data/{borrowRequest}', [BorrowRequ
 // STUDENT
 Route::get('/student/home/books', [HomeController::class, 'getDataClientSachByCategory']);
 Route::get('/student/home/categories', [HomeController::class, 'getDataClientCategory']);
-Route::post('/student/borrow-request/add-data', [HomeController::class, 'addBorrowRequest']);
+Route::middleware('auth:sanctum')->post(
+    '/student/borrow-request/add-data',
+    [HomeController::class, 'addBorrowRequest']
+);
 Route::post('/student/books/search', [HomeController::class, 'searchBooks']);
 
 //Admin
 Route::get('/admin/thongke/summary', [ThongKeController::class, 'getSummaryData']);
 Route::get('/admin/thongke/recent-borrow', [ThongKeController::class, 'getRecentBorrowData']);
 
+Route::post('/auth/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+  Route::get('/auth/me', [AuthController::class, 'me']);
+  Route::post('/auth/logout', [AuthController::class, 'logout']);
+});

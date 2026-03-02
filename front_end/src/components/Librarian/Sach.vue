@@ -362,9 +362,12 @@ export default {
 }
 
 .btn-add {
-  padding: 10px 18px;
+  padding: 10px 16px;
   border-radius: 12px;
   font-weight: 600;
+  flex: 0 0 auto;     /* không bị giãn */
+  width: auto;        /* không full width */
+  white-space: nowrap;
 }
 
 .table-head th {

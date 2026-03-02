@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 150)->unique();
             $table->foreignId('author_id')->constrained('authors')->cascadeOnDelete();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
-            $table->string('image', 100)->nullable();
+            $table->string('image', 255)->nullable();
             $table->string('publisher', 100)->nullable();
             $table->integer('publication_year')->nullable();
             $table->integer('quantity');
