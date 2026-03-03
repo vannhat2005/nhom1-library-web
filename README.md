@@ -13,7 +13,9 @@ Hệ thống quản lý thư viện trực tuyến với 3 vai trò:
 
 ## 📂 Project Structure
 library-web/
+
 ├─ front_end/ # Vue 3 + Vite
+
 └─ back_end/ # Laravel API
 ## ⚙️ Installation
 
@@ -22,7 +24,7 @@ library-web/
 git clone https://github.com/vannhat2005/cs434b-nhom1-library-web.git
 cd library-web
 
-2) Setup Backend (Laravel)
+** Setup Backend (Laravel)
 cd back_end
 composer install
 cp .env.example .env
@@ -32,7 +34,7 @@ php artisan serve
 
 Backend: http://127.0.0.1:8000
 
-3) Setup Frontend (Vue)
+** Setup Frontend (Vue)
 cd ../front_end
 npm install
 npm run dev
