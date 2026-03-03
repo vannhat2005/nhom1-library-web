@@ -1,19 +1,35 @@
 📚 Library Web Management System
+
 Hệ thống quản lý thư viện trực tuyến với 3 vai trò:
+
 👤 Client – Tìm kiếm & mượn sách
+
 📖 Librarian – Quản lý sách, xử lý mượn/trả
+
 🛠️ Admin – Quản lý toàn hệ thống
+
 🏗️ Công nghệ sử dụng
 Frontend
+
 Vue 3 + Vite
+
 Vue Router
+
 Bootstrap 5
+
 Font Awesome
+
 Backend
+
 Laravel (RESTful API)
+
 Sanctum Authentication
+
 MySQL
+
 Server
+
+Nginx (Production)
 
 📂 Cấu trúc dự án
 library-web/
@@ -23,7 +39,6 @@ library-web/
 1️⃣ Clone project
 git clone https://github.com/vannhat2005/library-web.git
 cd library-web
-
 2️⃣ Cài đặt Backend (Laravel)
 cd back_end
 composer install
